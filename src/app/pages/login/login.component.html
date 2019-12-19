@@ -1,0 +1,16 @@
+<form [formGroup]="loginForm" name="login-form" (ngSubmit)="onSubmit(loginForm.value)">
+
+        <label for="inputEmail3" >Email</label>
+        <input type="text" formControlName="email" autocomplete="off" #email name="email" placeholder="Digite seu e-mail"/>
+
+
+        <label class="col-sm-3 control-label">Password</label>
+        <input type="password" formControlName="password" autocomplete="off" #password name="password" placeholder="Digite sua senha" feedback="false"/>
+
+
+
+        <div>
+            <button type="submit">Login</button>
+        </div>
+
+</form>
