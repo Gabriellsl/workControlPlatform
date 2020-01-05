@@ -1,0 +1,41 @@
+<p>Select one employee !</p>
+<table>
+    <thead>
+      <th>Name</th>
+      <th>email</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>
+            <button (click)="selectUser(user)">Select</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+  <br><br>
+
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>hours</th>
+      <th>minutes</th>
+      <th>seconds</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clientWorks">
+        
+        <td>{{client.name}}</td>
+        <td>{{client.hour}}</td>
+        <td>{{client.min}}</td>
+        <td>{{client.sec}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br><br>
+  <a routerLink="/admin" routerLinkActive="active"><button>management</button></a>
