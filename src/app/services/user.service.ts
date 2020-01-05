@@ -50,4 +50,8 @@ export class UserService {
     return this.firestore.collection('users').doc(userId).collection('clients').doc(clientId).ref;
   }
 
+  getClients(userId){
+    return this.firestore.collection('users').doc(userId).collection('clients').snapshotChanges();
+  }
+
 }

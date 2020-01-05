@@ -4,13 +4,6 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
 
   <div>
-    <label for="name">
-      Name
-    </label>
-    <input id="name" type="text" formControlName="name">
-  </div>
-
-  <div>
     <label for="address">
       Email
     </label>
@@ -24,16 +17,8 @@
     <input id="password" type="" formControlName="password">
   </div>
 
-  <div>
-    <label for="address">
-      Is root user ?
-    </label>
-    <br>
-    <input id="isRoot" type="radio" formControlName="isRoot" name="isRoot" value="1">Yes
-    <input id="isRoot" type="radio" formControlName="isRoot" name="isRoot" value="0" checked>No<br>   
-  </div>
 
-  <button class="button" type="submit">Cadastrar</button>
+  <button class="button" type="submit">login</button>
 
 
 </form>

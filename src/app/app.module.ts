@@ -15,6 +15,7 @@ import { environment } from '../environments/environment';
 import { AdminComponent } from './pages/admin/admin.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     HomeComponent,
     AdminComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    DashboardComponent
   ],
   imports: [
     ReactiveFormsModule,

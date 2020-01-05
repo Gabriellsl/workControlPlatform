@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
     console.log(log);
     var user = JSON.parse(localStorage.getItem("user"));
     if(user != null){
-    user["isAdmin"] == 0 ? this.router.navigate(['/employee']) : this.router.navigate(['/admin']);
+    user["isAdmin"] == 0 ? this.router.navigate(['/employee']) : this.router.navigate(['/dashboard']);
     }
     
   }

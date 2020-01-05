@@ -81,10 +81,6 @@ export class EmployeeComponent implements OnInit {
   }
 
 
-  prints() {
-    console.log(this.clientWork);
-  }
-
   endWork() {
 
     this.clientWork.name = this.selectedClient.name;
