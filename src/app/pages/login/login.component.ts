@@ -71,12 +71,14 @@ export class LoginComponent implements OnInit {
 
   async findLogin() {
     var userLog;
+    var userId;
     const val = await this.loginService.login(this.user.email, this.user.password).get()
       .then(function (querySnapshot) {
         if (!querySnapshot.empty) {
           querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
             userLog = <User>doc.data();
+            userId = doc.id;
           });
         }else{
           userLog = null;
@@ -90,7 +92,9 @@ export class LoginComponent implements OnInit {
 
       if(userLog != null){
         if(userLog.email == this.user.email && userLog.password == this.user.password){
-          localStorage.setItem("user",JSON.stringify(userLog));
+          userLog.id = userId;
+          this.user = userLog;
+          localStorage.setItem("user",JSON.stringify(this.user));
           return true;
         }else{
           return false;

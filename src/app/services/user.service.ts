@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore'; 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {User} from './../models/user';
+import { User } from './../models/user';
+import { ClientWork } from './../models/work';
 
 
 
@@ -33,6 +34,20 @@ export class UserService {
 
   deleteUser(userId: string){
     this.firestore.doc('users/' + userId).delete();
+  }
+
+  addClient(client: ClientWork, userId, clientId){
+    delete client.id;
+    this.firestore.collection('users').doc(userId).collection('clients').doc(clientId).set(client);
+  }
+
+  updateClient(client: ClientWork, userId, clientId){
+    delete client.id;
+    this.firestore.collection('users').doc(userId).collection('clients').doc(clientId).update(client);
+  }
+
+  getClient(userId, clientId){
+    return this.firestore.collection('users').doc(userId).collection('clients').doc(clientId).ref;
   }
 
 }

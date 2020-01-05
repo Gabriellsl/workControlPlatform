@@ -15,14 +15,17 @@
     </h1>
     <div *ngIf="selected != false">
         <button (click)="startTimer()" >start1</button>
-        <button (click)="pauseTimer()">stop1</button>
+        <button (click)= "pauseTimer()">stop1</button>
+        <button (click)="endWork()" >end work</button>
+        
     </div>
 
     <div *ngIf="selected == false">
         <button (click)="startTimer()" disabled>start</button>
         <button (click)="pauseTimer()" disabled>stop</button>
+        
     </div>
-
+    <button (click)="prints()" >print</button>
 
 </div>
 
