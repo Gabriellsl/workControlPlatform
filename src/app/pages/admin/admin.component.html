@@ -1,6 +1,6 @@
 <p>Hello, you are a admin</p>
 
-<form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+<form [formGroup]="userForm" (ngSubmit)="saveUser(userForm.value)">
 
     <div>
       <label for="name">
@@ -51,10 +51,57 @@
         <td>{{user.password}}</td>
         <td>{{user.isAdmin}}</td>
         <td>
-            <button (click)="delete(user.id)">Delete</button>
+            <button (click)="deleteUser(user.id)">Delete</button>
         </td>
         <td>
-            <button (click)="edit(user)">Edit</button>
+            <button (click)="editUser(user)">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <br><br>
+
+
+
+  <form [formGroup]="clientForm" (ngSubmit)="saveClient(clientForm.value)">
+
+    <div>
+      <label for="name">
+        Name
+      </label>
+      <input id="name" type="text" formControlName="name">
+    </div>
+  
+    <div>
+      <label for="fantasy">
+        Email
+      </label>
+      <input id="fantasy" type="test" formControlName="fantasy">
+    </div>
+  
+  
+    <button class="button" type="submit">Cadastrar</button>
+  
+  
+  </form>
+
+
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>fantasy</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients">
+        <td>{{client.name}}</td>
+        <td>{{client.fantasy}}</td>
+        <td>
+            <button (click)="deleteClient(client.id)">Delete</button>
+        </td>
+        <td>
+            <button (click)="editClient(client)">Edit</button>
         </td>
       </tr>
     </tbody>
