@@ -1,1 +1,61 @@
 <p>Hello, you are a admin</p>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+
+    <div>
+      <label for="name">
+        Name
+      </label>
+      <input id="name" type="text" formControlName="name">
+    </div>
+  
+    <div>
+      <label for="address">
+        Email
+      </label>
+      <input id="email" type="email" formControlName="email">
+    </div>
+  
+    <div>
+      <label for="address">
+        Senha
+      </label>
+      <input id="password" type="" formControlName="password">
+    </div>
+  
+    <div>
+      <label for="address">
+        Is root user ?
+      </label>
+      <br>
+      <input id="isRoot" type="radio" formControlName="isAdmin" name="isAdmin" value="1">Yes
+      <input id="isRoot" type="radio" formControlName="isAdmin" name="isAdmin" value="0" checked>No<br>   
+    </div>
+  
+    <button class="button" type="submit">Cadastrar</button>
+  
+  
+  </form>
+
+<table>
+    <thead>
+      <th>Name</th>
+      <th>email</th>
+      <th>password</th>
+      <th>isAdmin</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.password}}</td>
+        <td>{{user.isAdmin}}</td>
+        <td>
+            <button (click)="delete(user.id)">Delete</button>
+        </td>
+        <td>
+            <button (click)="edit(user)">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

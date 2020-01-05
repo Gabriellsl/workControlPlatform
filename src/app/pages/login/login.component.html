@@ -1,16 +1,39 @@
-<form [formGroup]="loginForm" name="login-form" (ngSubmit)="onSubmit(loginForm.value)">
-
-        <label for="inputEmail3" >Email</label>
-        <input type="text" formControlName="email" autocomplete="off" #email name="email" placeholder="Digite seu e-mail"/>
+<!-- <h3>Cart</h3> -->
 
 
-        <label class="col-sm-3 control-label">Password</label>
-        <input type="password" formControlName="password" autocomplete="off" #password name="password" placeholder="Digite sua senha" feedback="false"/>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
 
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
 
+  <div>
+    <label for="address">
+      Email
+    </label>
+    <input id="email" type="email" formControlName="email">
+  </div>
 
-        <div>
-            <button type="submit">Login</button>
-        </div>
+  <div>
+    <label for="address">
+      Senha
+    </label>
+    <input id="password" type="" formControlName="password">
+  </div>
+
+  <div>
+    <label for="address">
+      Is root user ?
+    </label>
+    <br>
+    <input id="isRoot" type="radio" formControlName="isRoot" name="isRoot" value="1">Yes
+    <input id="isRoot" type="radio" formControlName="isRoot" name="isRoot" value="0" checked>No<br>   
+  </div>
+
+  <button class="button" type="submit">Cadastrar</button>
+
 
 </form>
