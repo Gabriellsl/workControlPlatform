@@ -1,4 +1,8 @@
 <p>Hello you are a employee !</p>
+<div *ngIf="selected != false">
+  you are working to {{selectedClient.name}}
+</div>
+
 
 <div>
     <h1>
@@ -9,8 +13,32 @@
       seconds: {{sec}}
       <br>  
     </h1>
+    <div *ngIf="selected != false">
+        <button (click)="startTimer()" >start1</button>
+        <button (click)="pauseTimer()">stop1</button>
+    </div>
 
-        <button (click)="startTimer()">start</button>
-        <button (click)="pauseTimer()">stop</button>
+    <div *ngIf="selected == false">
+        <button (click)="startTimer()" disabled>start</button>
+        <button (click)="pauseTimer()" disabled>stop</button>
+    </div>
+
 
 </div>
+
+<h2>Select one client to work:</h2>
+<table>
+    <thead>
+      <th>Name</th>
+      <th>fantasy</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients">
+        <td>{{client.name}}</td>
+        <td>{{client.fantasy}}</td>
+        <td>
+            <button (click)="selectClient(client)">Select</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

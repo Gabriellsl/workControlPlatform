@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Client } from 'src/app/models/client';
+import { ClientService } from 'src/app/services/client.service';
 
 @Component({
   selector: 'app-employee',
@@ -8,11 +10,24 @@ import { Observable } from 'rxjs';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor() { 
-    
+  clients: Client[];
+  selectedClient: Client;
+  selected = false;
+
+  constructor(private clientService: ClientService) { 
+    this.selectedClient = null;
   }
 
   ngOnInit() {
+    this.clientService.getClients().subscribe(data => {
+      this.clients = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          ...<Client>e.payload.doc.data()
+        } as Client;
+      })
+    });
+
     
   }
 
@@ -51,7 +66,11 @@ export class EmployeeComponent implements OnInit {
   pauseTimer() {
     this.play = false;
     clearInterval(this.interval);
-    console.log(this.sec);
+  }
+
+  selectClient(client: Client){
+    this.selectedClient = client;
+    this.selected = true;
   }
 
   // start() {
