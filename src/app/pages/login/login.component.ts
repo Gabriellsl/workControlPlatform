@@ -68,7 +68,6 @@ export class LoginComponent implements OnInit {
     }
 
     var log = await this.findLogin();
-    console.log(log);
 
     if(log == null || log == undefined){
       alert("Email ou senha incorreto");
@@ -96,7 +95,6 @@ export class LoginComponent implements OnInit {
           });
         }else{
           userLog = null;
-          console.log("n tem");
         }
       })
       .catch(function (error) {
