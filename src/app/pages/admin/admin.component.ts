@@ -19,6 +19,7 @@ export class AdminComponent implements OnInit {
   newClient: boolean;
   newEmployee: boolean;
 
+  currentUser: User;
   users: User[];
   user: User = {
     id: '',
@@ -80,6 +81,7 @@ export class AdminComponent implements OnInit {
         } as Client;
       })
     });
+    this.currentUser = JSON.parse(localStorage.getItem("user"));
   }
 
   saveUser(userData) {

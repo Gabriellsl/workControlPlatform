@@ -70,6 +70,7 @@ export class EmployeeComponent implements OnInit {
   public min = 0;
 
   startTimer() {
+    if(this.play == false){
     this.play = true;
     this.interval = setInterval(() => {
       this.sec++;
@@ -81,12 +82,16 @@ export class EmployeeComponent implements OnInit {
           this.hour++
         }
       }
-    }, 100)
+    }, 1000)
+  }
   }
 
   pauseTimer() {
-    this.play = false;
-    clearInterval(this.interval);
+    if(this.play == true){
+      this.play = false;
+      clearInterval(this.interval);
+    }
+    
   }
 
 

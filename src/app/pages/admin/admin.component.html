@@ -3,10 +3,10 @@
 
     <div class="container-greetings">
       <h1>Administration Page</h1>
-      <h4 class="subtitle" *ngIf="!manageClients && !manageEmployee">GERENTE FODA, here you can manage the employees and
+      <h4 class="subtitle" *ngIf="!manageClients && !manageEmployee">{{currentUser.name}}, here you can manage the employees and
         clients</h4>
-      <h4 class="subtitle" *ngIf="manageClients">GERENTE FODA, you are managing your clients</h4>
-      <h4 class="subtitle" *ngIf="manageEmployee">GERENTE FODA, you are managing your employees</h4>
+      <h4 class="subtitle" *ngIf="manageClients">{{currentUser.name}}, you are managing your clients</h4>
+      <h4 class="subtitle" *ngIf="manageEmployee">{{currentUser.name}}, you are managing your employees</h4>
     </div>
 
     <div class="container-options">

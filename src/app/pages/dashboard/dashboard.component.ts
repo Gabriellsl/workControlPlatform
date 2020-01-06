@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   users: User[] = [];
   clientWorks: ClientWork[] = [];
   haveWork = "S0";
+  currentUser: User;
 
   userSelected: User;
   showUserDetails: boolean;
@@ -32,6 +33,7 @@ export class DashboardComponent implements OnInit {
         } as User;
       }).filter(user => user.isAdmin == "0");
     }); 
+    this.currentUser = JSON.parse(localStorage.getItem("user"));
   }
 
   cleanSelection(){
