@@ -4,6 +4,8 @@ import { Client } from 'src/app/models/client';
 import { ClientService } from 'src/app/services/client.service';
 import { ClientWork } from 'src/app/models/work';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-employee',
@@ -12,6 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class EmployeeComponent implements OnInit {
 
+  currentUser: User;
   notNew = true;
   clients: Client[];
   selectedClient: Client;
@@ -22,12 +25,15 @@ export class EmployeeComponent implements OnInit {
     min: 0,
     sec: 0
   };
-  selected = false;
+  working = false;
 
   constructor(
     private clientService: ClientService,
-    private userService: UserService) {
+    private userService: UserService,
+    private router: Router) 
+  {
     this.selectedClient = null;
+    this.currentUser = JSON.parse(localStorage.getItem("user"));
   }
 
   ngOnInit() {
@@ -39,8 +45,11 @@ export class EmployeeComponent implements OnInit {
         } as Client;
       })
     });
+  }
 
-
+  logout(){
+    localStorage.removeItem("user");
+    this.router.navigate(['/']);
   }
 
   // public timeBegan = null
@@ -82,23 +91,25 @@ export class EmployeeComponent implements OnInit {
 
 
   endWork() {
+    this.pauseTimer();
 
     this.clientWork.name = this.selectedClient.name;
     this.clientWork.hour = this.hour;
     this.clientWork.min = this.min;
     this.clientWork.sec = this.sec;
     console.log(this.clientWork);
-    var currentUser = JSON.parse(localStorage.getItem("user"));
-    console.log(currentUser);
+    
     if (this.notNew)
-      this.userService.updateClient(this.clientWork, currentUser.id, this.selectedClient.id);
+      this.userService.updateClient(this.clientWork, this.currentUser.id, this.selectedClient.id);
     else
-      this.userService.addClient(this.clientWork, currentUser.id, this.selectedClient.id);
+      this.userService.addClient(this.clientWork, this.currentUser.id, this.selectedClient.id);
+
+    this.working = false;
   }
 
   async selectClient(client: Client) {
     this.selectedClient = client;
-    this.selected = true;
+    this.working = true;
     this.notNew = await this.findClient();
     console.log("existe : ", this.notNew);
     if (this.notNew) {

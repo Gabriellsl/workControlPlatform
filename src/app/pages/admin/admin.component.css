@@ -1,0 +1,101 @@
+.container-admin{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #700348;
+}
+
+h1, h2, h4 {
+    text-align: center;
+}
+
+.container-greetings{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-admin{
+    width: 75%;
+    padding: 1.5rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-options{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar button{
+    width: 8rem;
+    margin-bottom: 1rem;
+}
+
+.center-content{
+    margin-left: 2rem;
+}
+
+.space-item-table{
+    margin-right: 1rem;
+}
+
+.button-select{
+    padding: 0.2rem 0.6rem;
+    margin-left: 0.5rem;
+}
+
+.container-manage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.formNew{
+    margin-left: 1.5rem;
+}
+
+.item-buttom{
+    margin: 1rem;
+}
+
+.initial-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@Media(max-width: 576px){
+    .content-admin{
+        width: 100% !important;
+    }
+    .center-content{
+        margin-left: 0 !important;
+    }
+    .sidebar{
+        flex-direction: row !important;
+    }
+    .sidebar button{
+        margin-right: 1rem;
+    }
+}

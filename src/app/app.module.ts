@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
 
 // firebase imports
 import { AngularFireModule } from '@angular/fire';
@@ -16,12 +15,13 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AuthGuard } from './guards/auth-guard.service';
+import { RoleGuard } from './guards/role-guard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
     AdminComponent,
     EmployeeComponent,
     DashboardComponent
@@ -36,7 +36,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [AuthGuard, RoleGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

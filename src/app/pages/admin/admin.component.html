@@ -1,108 +1,157 @@
-<p>Hello, you are a admin</p>
+<div class="container-fluid container-admin">
+  <div class="content-admin">
 
-<form [formGroup]="userForm" (ngSubmit)="saveUser(userForm.value)">
-
-    <div>
-      <label for="name">
-        Name
-      </label>
-      <input id="name" type="text" formControlName="name">
+    <div class="container-greetings">
+      <h1>Administration Page</h1>
+      <h4 class="subtitle" *ngIf="!manageClients && !manageEmployee">GERENTE FODA, here you can manage the employees and
+        clients</h4>
+      <h4 class="subtitle" *ngIf="manageClients">GERENTE FODA, you are managing your clients</h4>
+      <h4 class="subtitle" *ngIf="manageEmployee">GERENTE FODA, you are managing your employees</h4>
     </div>
-  
-    <div>
-      <label for="address">
-        Email
-      </label>
-      <input id="email" type="email" formControlName="email">
+
+    <div class="container-options">
+
+      <div class="sidebar">
+        <button class="btn btn-primary" (click)="showEmployee()">Employees</button>
+        <button class="btn btn-primary" (click)="showClient()">Clients</button>
+        <button class="btn btn-secondary item-buttom" (click)="goDash()">Dashboard</button>
+        <button class="btn btn-info item-buttom" (click)="logout()">Logout</button>
+      </div>
+
+      <div class="center-content">
+
+        <div class="container-manage" *ngIf="manageEmployee">
+          <div class="initial-details">
+            <table>
+              <thead>
+                <th>
+                  <h6 class="space-item-table">Name</h6>
+                </th>
+                <th>
+                  <h6 class="space-item-table">Email</h6>
+                </th>
+                <th>
+                  <h6 class="space-item-table">isAdmin</h6>
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users">
+                  <td>
+                    <h6 class="space-item-table">{{user.name}}</h6>
+                  </td>
+                  <td>
+                    <h6 class="space-item-table">{{user.email}}</h6>
+                  </td>
+                  <td>
+                    <h6 class="space-item-table">{{user.isAdmin}}</h6>
+                  </td>
+                  <td>
+                    <button class="btn btn-secondary button-select" (click)="editUser(user)">Edit</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger button-select" (click)="deleteUser(user.id)">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <button class="btn btn-dark item-buttom" type="button" (click)="newEmployee = true">New</button>
+          </div>
+
+          <form *ngIf="newEmployee" class="formNew" [formGroup]="userForm" (ngSubmit)="saveUser(userForm.value)">
+            <div>
+              <label for="name">
+                Name
+              </label>
+              <input id="name" class="form-control" type="text" formControlName="name">
+            </div>
+
+            <div>
+              <label for="address">
+                Email
+              </label>
+              <input id="email" class="form-control" type="email" formControlName="email">
+            </div>
+
+            <div>
+              <label for="address">
+                Senha
+              </label>
+              <input id="password" class="form-control" type="password" formControlName="password">
+            </div>
+
+            <div>
+              <label for="address">
+                Is root user ?
+              </label>
+              <br>
+              <input id="isRoot" type="radio" formControlName="isAdmin" name="isAdmin" value="1">Yes
+              <input id="isRoot" type="radio" formControlName="isAdmin" name="isAdmin" value="0" checked>No<br>
+            </div>
+
+            <button class="btn btn-success item-buttom" type="submit">Cadastrar</button>
+            <button class="btn btn-danger item-buttom" (click)="cancelNewEmployee()" type="button">Cancelar</button>
+          </form>
+
+        </div>
+
+        <div class="container-manage" *ngIf="manageClients">
+          <div class="initial-details">
+            <table>
+              <thead>
+                <th>
+                  <h6 class="space-item-table"><b>Client</b></h6>
+                </th>
+                <th>
+                  <h6 class="space-item-table"><b>Fantasy</b></h6>
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let client of clients">
+                  <td>
+                    <h6 class="space-item-table">{{client.name}}</h6>
+                  </td>
+                  <td>
+                    <h6 class="space-item-table">{{client.fantasy}}</h6>
+                  </td>
+                  <td>
+                    <button class="btn btn-secondary button-select" (click)="editClient(client)">Edit</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger button-select" (click)="deleteClient(client.id)">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="btn btn-dark item-buttom" type="button" (click)="newClient = true">New</button>
+          </div>
+
+          <form *ngIf="newClient" class="formNew" [formGroup]="clientForm"
+            (ngSubmit)="saveClient(clientForm.value)">
+
+            <div>
+              <label for="name">
+                Name
+              </label>
+              <input id="name" name="name" class="form-control" type="text" formControlName="name">
+            </div>
+
+            <div>
+              <label for="fantasy">
+                Fantasy
+              </label>
+              <input id="fantasy" name="fantasy" class="form-control" type="text" formControlName="fantasy">
+            </div>
+
+            <button class="btn btn-success item-buttom" type="submit">Cadastrar</button>
+            <button class="btn btn-danger item-buttom" (click)="cancelNewClient()" type="button">Cancelar</button>
+          </form>
+        </div>
+
+      </div>
+
     </div>
-  
-    <div>
-      <label for="address">
-        Senha
-      </label>
-      <input id="password" type="" formControlName="password">
-    </div>
-  
-    <div>
-      <label for="address">
-        Is root user ?
-      </label>
-      <br>
-      <input id="isRoot" type="radio" formControlName="isAdmin" name="isAdmin" value="1">Yes
-      <input id="isRoot" type="radio" formControlName="isAdmin" name="isAdmin" value="0" checked>No<br>   
-    </div>
-  
-    <button class="button" type="submit">Cadastrar</button>
-  
-  
-  </form>
 
-<table>
-    <thead>
-      <th>Name</th>
-      <th>email</th>
-      <th>password</th>
-      <th>isAdmin</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <td>{{user.name}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.password}}</td>
-        <td>{{user.isAdmin}}</td>
-        <td>
-            <button (click)="deleteUser(user.id)">Delete</button>
-        </td>
-        <td>
-            <button (click)="editUser(user)">Edit</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  </div>
 
-
-  <br><br>
-
-
-
-  <form [formGroup]="clientForm" (ngSubmit)="saveClient(clientForm.value)">
-
-    <div>
-      <label for="name">
-        Name
-      </label>
-      <input id="name" type="text" formControlName="name">
-    </div>
-  
-    <div>
-      <label for="fantasy">
-        Email
-      </label>
-      <input id="fantasy" type="test" formControlName="fantasy">
-    </div>
-  
-  
-    <button class="button" type="submit">Cadastrar</button>
-  
-  
-  </form>
-
-
-  <table>
-    <thead>
-      <th>Name</th>
-      <th>fantasy</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let client of clients">
-        <td>{{client.name}}</td>
-        <td>{{client.fantasy}}</td>
-        <td>
-            <button (click)="deleteClient(client.id)">Delete</button>
-        </td>
-        <td>
-            <button (click)="editClient(client)">Edit</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+</div>

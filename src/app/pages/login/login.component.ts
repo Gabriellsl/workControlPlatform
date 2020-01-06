@@ -52,19 +52,33 @@ export class LoginComponent implements OnInit {
   }
 
   public async onSubmit(userData) {
-    //console.log(userData);
-    //var val = this.loginService.cadastrar(userData['email'], userData['password']);
-    //console.log(val);
     this.user.email = userData['email'];
     this.user.name = userData['name'];
     this.user.password = userData['password'];
     this.user.isAdmin = userData['isRoot'];
-    //this.userService.addUser(this.user);
+
+    if(this.user.email == null || this.user.email.length < 1){
+      alert("Informe seu e-mail");
+      return;
+    }
+
+    if(this.user.password == null || this.user.password.length < 1){
+      alert("Informe sua senha");
+      return;
+    }
+
     var log = await this.findLogin();
     console.log(log);
+
+    if(log == null || log == undefined){
+      alert("Email ou senha incorreto");
+      return;
+    }
+
     var user = JSON.parse(localStorage.getItem("user"));
+
     if(user != null){
-    user["isAdmin"] == 0 ? this.router.navigate(['/employee']) : this.router.navigate(['/dashboard']);
+      user["isAdmin"] == 0 ? this.router.navigate(['/employee']) : this.router.navigate(['/dashboard']);
     }
     
   }

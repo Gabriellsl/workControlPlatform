@@ -1,41 +1,62 @@
-<p>Select one employee !</p>
-<table>
-    <thead>
-      <th>Name</th>
-      <th>email</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        
-        <td>{{user.name}}</td>
-        <td>{{user.email}}</td>
-        <td>
-            <button (click)="selectUser(user)">Select</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container-fluid container-dashboard">
+  <div class="content-dashboard">
+    <div class="container-greetings">
+      <h1>Welcome manager GERENTE FODA!</h1>
+      <h4 class="subtitle">Choose a employee to see the report</h4>
+    </div>
 
-  
-  <br><br>
+    <div class="container-report">
+      <div class="container-users" *ngIf="!showUserDetails">
+        <table>
+          <thead>
+            <th> <h6><b>Employee</b></h6> </th>
+            <th> <h6 class="space-item-table"><b>Email</b></h6> </th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
 
-  <table>
-    <thead>
-      <th>Name</th>
-      <th>hours</th>
-      <th>minutes</th>
-      <th>seconds</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let client of clientWorks">
-        
-        <td>{{client.name}}</td>
-        <td>{{client.hour}}</td>
-        <td>{{client.min}}</td>
-        <td>{{client.sec}}</td>
-      </tr>
-    </tbody>
-  </table>
+              <td> <h6>{{user.name}}</h6> </td>
+              <td> <h6 class="space-item-table">{{user.email}}</h6> </td>
+              <td>
+                <button class="btn btn-primary button-select-client" (click)="selectUser(user)">Select</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-  <br><br>
-  <a routerLink="/admin" routerLinkActive="active"><button>management</button></a>
+      <div class="container-resume-employee" *ngIf="showUserDetails">
+        <h5 class="subtitle"><b>Employee details</b></h5>
+        <h6> {{ userSelected.name }} </h6>
+        <h6> {{ userSelected.email }} </h6>
+        <button class="btn btn-primary" (click)="cleanSelection()">Back</button>
+      </div>
+
+      <div class="container-client-report" *ngIf="showUserDetails">
+        <table>
+          <thead>
+            <th> <h6><b>Client</b></h6> </th>
+            <th> <h6 class="space-item-table"><b>Hours</b></h6> </th>
+            <th> <h6 class="space-item-table"><b>Minutes</b></h6> </th>
+            <th> <h6 class="space-item-table"><b>Seconds</b></h6> </th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let client of clientWorks">
+
+              <td> <h6>{{client.name}}</h6> </td>
+              <td> <h6 class="space-item-table">{{client.hour}}</h6> </td>
+              <td> <h6 class="space-item-table">{{client.min}}</h6> </td>
+              <td> <h6 class="space-item-table">{{client.sec}}</h6> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="container-buttons">
+      <button class="btn btn-secondary item-buttom" (click)="goAdm()">Management</button>
+      <button class="btn btn-info item-buttom" (click)="logout()">Logout</button>
+    </div>
+  </div>
+
+</div>

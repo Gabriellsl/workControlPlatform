@@ -1,46 +1,54 @@
-<p>Hello you are a employee !</p>
-<div *ngIf="selected != false">
-  you are working to {{selectedClient.name}}
-</div>
+<div class="container-fluid container-employee">
+  <div class="content-employee">
+    <div class="container-greetings">
+      <h1 *ngIf="!working">Welcome employee {{currentUser.name}}!</h1>
+      <h1 *ngIf="working">Let's work {{currentUser.name}}!</h1>
+      <h4 class="subtitle" *ngIf="!working">To start your work, please choose a client</h4>
+      <h4 class="subtitle" *ngIf="working">You are working to {{selectedClient.name}}</h4>
+    </div>
+  
+    <div class="options-employee">
+      <div class="container-clients" *ngIf="!working">
+        <h3 class="title">Clients avaible:</h3>
+        <table>
+          <thead>
+            <th> <h6 class="space-item-table">Name</h6> </th>
+            <th> <h6>Fantasy Name</h6> </th>
+          </thead>
+          <tbody>
+            <tr class="line-client" *ngFor="let client of clients">
+              <td> <h6 class="space-item-table"> {{client.name}} </h6> </td>
+              <td> <h6 class="space-item-table"> {{client.fantasy}} </h6> </td>
+              <td>
+                <button class="btn btn-primary button-select-client" (click)="selectClient(client)">Select</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+      <div class="container-working" *ngIf="working">  
+        <h2 class="item-time">
+          Hours: {{hour}}
+        </h2>
 
+        <h2 class="item-time">
+          Minutes: {{min}}
+        </h2>
 
-<div>
-    <h1>
-      hours: {{hour}}
-      <br>
-      minutes: {{min}}
-      <br>
-      seconds: {{sec}}
-      <br>  
-    </h1>
-    <div *ngIf="selected != false">
-        <button (click)="startTimer()" >start1</button>
-        <button (click)= "pauseTimer()">stop1</button>
-        <button (click)="endWork()" >end work</button>
-        
+        <h2 class="item-time">
+          Seconds: {{sec}}
+        </h2>
+
+        <div class="container-butttons">
+          <button class="btn btn-success button" (click)="startTimer()">Start</button>
+          <button class="btn btn-warning button" (click)="pauseTimer()">Pause</button>
+          <button class="btn btn-danger button" (click)="endWork()">Go home</button>
+        </div>
+      </div>
+      
+      <button class="btn btn-info" *ngIf="!working" (click)="logout()">Logout</button>
     </div>
 
-    <div *ngIf="selected == false">
-        <button (click)="startTimer()" disabled>start</button>
-        <button (click)="pauseTimer()" disabled>stop</button>
-        
-    </div>
-
+  </div>
 </div>
-
-<h2>Select one client to work:</h2>
-<table>
-    <thead>
-      <th>Name</th>
-      <th>fantasy</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let client of clients">
-        <td>{{client.name}}</td>
-        <td>{{client.fantasy}}</td>
-        <td>
-            <button (click)="selectClient(client)">Select</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>

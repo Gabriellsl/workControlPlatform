@@ -1,0 +1,61 @@
+.container-employee{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #700348;
+}
+
+.content-employee{
+    padding: 1.5rem;
+    background-color: white;
+}
+
+.container-greetings{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-greetings .subtitle{
+    padding-top: 1rem;
+}
+
+h1, h2, h4 {
+    text-align: center;
+}
+
+.options-employee{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.5rem;
+}
+
+.container-clients {
+    margin: 1rem;
+}
+
+.container-clients .space-item-table{
+    margin-right: 1rem;
+}
+
+.container-clients .title{
+    padding:  1rem;
+}
+
+.container-clients .button-select-client{
+    padding: 0.2rem 0.6rem;
+}
+
+.container-working .button{
+    margin-right: 0.5rem;
+}
+
+.container-working .item-time{
+    margin-bottom: 1rem;
+}

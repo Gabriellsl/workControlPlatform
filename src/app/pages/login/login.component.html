@@ -1,24 +1,24 @@
-<!-- <h3>Cart</h3> -->
+<div class="container-fluid container-login">
+  <div class="col-12 col-md-4 content-login">
+    <form class="row login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+      <h3 class="title-center">Work Control Platform</h3>
 
-
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-
-  <div>
-    <label for="address">
-      Email
-    </label>
-    <input id="email" type="email" formControlName="email">
+      <div class="row item-input">
+        <label class="col-12 col-md-3 title-center" for="email">
+          Email
+        </label>
+        <input id="email" class="col-12 col-md-9 form-control" type="email" formControlName="email">
+      </div>
+    
+      <div class="row item-input">
+        <label class="col-12 col-md-3 title-center" for="senha">
+          Senha
+        </label>
+        <input id="password" class="col-12 col-md-9 form-control" type="password" formControlName="password">
+      </div>
+    
+    
+      <button class="btn btn-info" type="submit">Login</button>
+    </form>
   </div>
-
-  <div>
-    <label for="address">
-      Senha
-    </label>
-    <input id="password" type="" formControlName="password">
-  </div>
-
-
-  <button class="button" type="submit">login</button>
-
-
-</form>
+</div>

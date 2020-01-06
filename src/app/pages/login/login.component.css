@@ -1,0 +1,33 @@
+.container-login{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #700348;
+}
+
+.content-login{
+    background-color: white;
+    box-shadow: 5px 5px 10px;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+.title-center{
+    text-align: center;
+}
+
+.login-form{
+    margin: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-input{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
