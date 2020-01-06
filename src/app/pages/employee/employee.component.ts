@@ -102,7 +102,6 @@ export class EmployeeComponent implements OnInit {
     this.clientWork.hour = this.hour;
     this.clientWork.min = this.min;
     this.clientWork.sec = this.sec;
-    console.log(this.clientWork);
     
     if (this.notNew)
       this.userService.updateClient(this.clientWork, this.currentUser.id, this.selectedClient.id);
@@ -116,7 +115,6 @@ export class EmployeeComponent implements OnInit {
     this.selectedClient = client;
     this.working = true;
     this.notNew = await this.findClient();
-    console.log("existe : ", this.notNew);
     if (this.notNew) {
       this.hour = this.clientWork.hour;
       this.min = this.clientWork.min;
@@ -140,14 +138,11 @@ export class EmployeeComponent implements OnInit {
           // userId = doc.id;
 
         } else {
-          console.log("n tem");
           return null;
         }
       })
       .catch(function (error) {
         return null;
-        console.log("Error getting documents: ", error);
-        // userLog = null;
       });
 
     if (clientData != null) {
