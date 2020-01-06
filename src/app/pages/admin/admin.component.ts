@@ -45,7 +45,7 @@ export class AdminComponent implements OnInit {
     private router: Router) 
   {
 
-    this.manageEmployee = true;
+    this.manageEmployee = false;
     this.manageClients = false;
 
     this.userForm = this.formBuilder.group({
